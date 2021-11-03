@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using meuyoutube.Models;
+using meuyoutube.Services.Interfaces;
+using meuyoutube.Services;
 
 namespace meuyoutube
 {
@@ -41,7 +43,9 @@ namespace meuyoutube
             services.AddControllersWithViews()
                     .AddRazorRuntimeCompilation();
 
-            // services.AddScoped<IChamadosService, ChamadosService>();
+            services.AddScoped<IVideoService, VideoService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
+            services.AddScoped<IVisibilidadeService, VisibilidadeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

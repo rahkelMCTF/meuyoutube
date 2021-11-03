@@ -17,17 +17,17 @@
             <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle tm-nav-link" href="#" id="navbarDarkDropdownMenuLink"
+                        <a class="nav-link dropdown-toggle tm-nav-link text-white" href="#" id="navbarDarkDropdownMenuLink"
                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            OLÁ @User.Identity.Name!
+                            @User.Identity.Name!
                         </a>
                         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                            <li><a class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index">Perfil</a>
+                            <li><a class="dropdown-item text-white" asp-area="Identity" asp-page="/Account/Manage/Index">Perfil</a>
                             </li>
                             <li>
                                 <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout"
                                 asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                                    <button type="submit" class="nav-link text-dark btn btn-link">LOGOUT</button>
+                                    <button type="submit" class="nav-link text-white btn btn-link">LOGOUT</button>
                                 </form>
                             </li>
                         </ul>
