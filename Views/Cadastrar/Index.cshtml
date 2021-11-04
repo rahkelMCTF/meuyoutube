@@ -1,5 +1,6 @@
-<form class="row g-3" enctype="multipart/form-data" method="POST" asp-action="Cadastrar" asp-controller='Cadastrar'
-  name="formulario" id="formulario">
+@model meuyoutube.Models.DTO.CadastrarDTO
+
+<form class="row g-3" enctype="multipart/form-data" method="POST" asp-action="Cadastrar" asp-controller='Cadastrar' name="formulario" id="formulario">
   <div class="col-md-6">
     <label for="titulo" class="form-label">Titulo</label>
     <input type="text" class="form-control" id="titulo" name="Titulo">
@@ -18,8 +19,11 @@
   <div class="col-md-4">
     <label for="visibilidade" class="form-label">Visibilidade</label>
     <select id="visibilidade" name="Visibilidade" class="form-select">
-      <option selected value="1">Pública</option>
-      <option value="2">Privada</option>
+      <option value="0">Selecione...</option>
+      @foreach(var item in @Model.visibilidade)
+      {
+        <option value="@item.Id">@item.Descricao</option>
+      }
     </select>
   </div>
   <div class="input-group">
@@ -29,3 +33,6 @@
     <button type="submit" class="btn btn-primary">Enviar</button>
   </div>
 </form>
+
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/js/cadastrar.js"></script>

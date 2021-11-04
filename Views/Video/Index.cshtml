@@ -1,3 +1,5 @@
+@model meuyoutube.Models.Video
+
 <div class="container-fluid">
     <div class="mx-auto tm-content-container">
         <main>
@@ -5,7 +7,7 @@
                 <div class="col-12">
                     <!-- Video player 1422x800 -->
                     <video width="1422" height="800" controls autoplay>
-                        <source src="video/wheat-field.mp4" type="video/mp4">
+                        <source src="@Model.Caminho/@Model.Nome" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -14,16 +16,9 @@
                 <div class="col-xl-8 col-lg-7">
                     <!-- Video description -->
                     <div class="tm-video-description-box">
-                        <h2 class="mb-5 tm-video-title">Mauris dapibus urna nec ipsum posuere</h2>
-                        <p class="mb-4">Cras dictum pretium est, et imperdiet ex. Fusce vitae vestibulum ipsum. Maecenas
-                            ultricies ipsum a urna ullamcorper, id interdum est blandit. Vivamus sit amet justo sed erat
-                            iaculis consequat. Nulla suscipit posuere lectus ut venenatis. Proin sed orci eget tellus
-                            euismod vulputate eu eu arcu.</p>
-                        <p class="mb-4">Etiam a bibendum lorem. Curabitur ac bibendum odio. Vivamus euismod dui mauris,
-                            ut tincidunt mi congue quis. Phasellus luctus orci dolor, a luctus massa tincidunt vitae.
-                            Integer sit amet odio id libero tincidunt dignissim in eget arcu.</p>
-                        <p class="mb-4">Aliquam tristique ut magna sit amet tincidunt. Sed tempor tellus nulla, molestie
-                            luctus lectus tincidunt id. Cras euismod leo a urna placerat, vel blandit turpis fermentum.
+                        <h2 class="mb-5 tm-video-title">@Model.Titulo</h2>
+                        <p class="mb-4">
+                            @Model.Descricao
                         </p>
                     </div>
                 </div>
@@ -61,7 +56,7 @@
                                 </svg>
                             </a>
                         </div>
-                        <p class="mb-4">Author: <a href="https://templatemo.com" class="tm-text-link">TemplateMo</a></p>
+                        <p class="mb-4">Author: <a href="https://templatemo.com" class="tm-text-link">@Model.Usuario.UserName</a></p>
                         <a href="#" class="tm-bg-white px-5 mb-4 d-inline-block tm-text-primary tm-likes-box tm-liked">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-heart-fill fas fa-heart mr-3 tm-liked-icon" viewBox="0 0 16 16">
@@ -73,7 +68,7 @@
                                 <path
                                     d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
                             </svg>
-                            <span id="tm-likes-count">486 likes</span>
+                            <span id="tm-likes-count">@Model.Visualizacoes likes</span>
                         </a>
                         <div>
                             <button class="btn btn-primary p-0 tm-btn-animate tm-btn-download tm-icon-download"><span>Download

@@ -12,6 +12,7 @@ using meuyoutube.Controllers.Util;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
+using meuyoutube.Models.DTO;
 
 namespace meuyoutube.Controllers
 {
@@ -39,9 +40,19 @@ namespace meuyoutube.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            CadastrarDTO cdto = new CadastrarDTO();
+            cdto.visibilidade = _visibilidadeService.GetAll();
+            cdto.playlist = new List<PlayList>();
+            return View(cdto);
         }
 
+        public List<Visibilidade> GetVisibilidades()
+        {
+            List<Visibilidade> lista = _visibilidadeService.GetAll();
+            return lista;
+        }
+
+        [HttpPost]
         public async Task<IActionResult> Cadastrar(string Titulo, string Descricao, 
         List<IFormFile> Arquivo, string Visibilidade)
         {
@@ -56,12 +67,12 @@ namespace meuyoutube.Controllers
 
                 bool resp = _videoService.Cadastrar(video[0]);
 
-                return View("Index",resp);                
+                return View("Index");                
             }
             catch(Exception ex)
             {
                 Console.WriteLine(ex);
-                return View("Index",false);
+                return View("Index");
             }
         }
         

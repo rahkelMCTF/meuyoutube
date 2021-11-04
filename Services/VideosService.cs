@@ -16,18 +16,20 @@ namespace meuyoutube.Services {
             _context = context;
         }
 
-        public List<Video> GetVideos(int? categoria, string sigla)
+        public List<Video> GetVideos(Usuario user)
         {
             try{
                 List<Video> Video = new List<Video>();
                 
                 Video = _context.Video                
-                .Where(v => v.Visibilidade.Id == 1)
-                .OrderBy(v => v.DataUpload)
+                .Where(v => v.Visibilidade.Id == 1 || (v.Visibilidade.Id == 2 && v.Usuario.Id == user.Id) )
+                .OrderByDescending(v => v.Visualizacoes)
                 .ToList();
+
                 if(Video == null){
                     Video = new List<Video>();
                 }
+
                 return Video;
             }
             catch(Exception ex){
@@ -39,6 +41,7 @@ namespace meuyoutube.Services {
         public Video GetVideo(int id)
         {
             Video video = _context.Video
+            .Include(v => v.Usuario)
             .SingleOrDefault(v => v.Id == id);
             if(video == null){
                 video = new Video();

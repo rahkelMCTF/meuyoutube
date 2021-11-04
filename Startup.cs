@@ -15,6 +15,8 @@ using Microsoft.Extensions.Hosting;
 using meuyoutube.Models;
 using meuyoutube.Services.Interfaces;
 using meuyoutube.Services;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace meuyoutube
 {
@@ -64,6 +66,15 @@ namespace meuyoutube
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            
+            // using Microsoft.Extensions.FileProviders;
+            // using System.IO;
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(env.ContentRootPath, "assets")),
+                RequestPath = "/assets"
+            });
 
             app.UseRouting();
 

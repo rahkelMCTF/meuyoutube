@@ -6,32 +6,25 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using meuyoutube.Models;
+using meuyoutube.Services.Interfaces;
 
 namespace meuyoutube.Controllers
 {
     public class VideoController : Controller
     {
         private readonly ILogger<VideoController> _logger;
+        private readonly IVideoService _videoService;
 
-        public VideoController(ILogger<VideoController> logger)
+        public VideoController(ILogger<VideoController> logger, IVideoService videoService)
         {
             _logger = logger;
+            _videoService = videoService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int id)
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            Video video = _videoService.GetVideo(id);
+            return View(video);
         }
     }
 }
